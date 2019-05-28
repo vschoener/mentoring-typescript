@@ -33,6 +33,8 @@ So ... What happened !?
 
 > ES3 used by default, Yep. :(
 
+----
+
 ### tsconfig to the rescue
 
 Compiler is very sophisticated and we can customize it a lot. We can pass a top of options to it but it will be a pain right?
