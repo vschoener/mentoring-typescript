@@ -19,7 +19,7 @@ Now, compile the code using `tsc index.ts` and open the `index.js` file.
 
 So ...?
 
-> ... o//
+> Nothing change right? ... o//
 
 ----
 
@@ -31,7 +31,7 @@ Once done, compile and open the generated file
 
 So ... What happened !?
 
-> ES3 used by default, Yep. :(
+> ES3 is used by default, yeah it generates a ton of code... o//
 
 ----
 
@@ -52,4 +52,4 @@ Here is the doc we're gonna use https://www.typescriptlang.org/docs/handbook/com
 
 Then compile the code and check your compiled file
 
-> What happened ?
+> The huge amount of code generated before disappeared, Thanks you compiler
