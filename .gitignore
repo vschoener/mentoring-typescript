@@ -1,3 +1,4 @@
 *.js
-/src
 /build
+/coverage
+/node_modules

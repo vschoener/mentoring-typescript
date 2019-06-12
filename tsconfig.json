@@ -3,6 +3,6 @@
     "rootDir": "./src",
     "outDir": "./build",
     "target": "es2018",
-    "lib": ["esnext"]
+    "lib": ["esnext", "dom"]
   }
 }

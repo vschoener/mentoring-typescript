@@ -1,0 +1,24 @@
+{
+  "name": "mentoring-typescript",
+  "version": "1.0.0",
+  "description": "## First step",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^3.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vschoener/mentoring-typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vschoener/mentoring-typescript/issues"
+  },
+  "homepage": "https://github.com/vschoener/mentoring-typescript#readme"
+}
