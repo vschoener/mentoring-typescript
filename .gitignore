@@ -1,1 +1,9 @@
 *.js
+*.ts
+/src
+/build
+/tsconfig.json
+/coverage
+/package.json
+/package-lock.json
+/node_modules
