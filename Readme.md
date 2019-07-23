@@ -101,32 +101,28 @@ Then compile the code and check your compiled file
 
 No we have seen the basics of the compilation, let's dive into the advantage of the language itself.
 
-### Existing type
+### Types
 
-- Primary
+There is a lot different type used to enforce your code
 
   - `string`
   - `number`
   - `boolean`
   - `null`
   - `void`
-
-- From JS World
-
   - `undefined`
-  - `object` (but can have any definition while it stays)
-
-- And common from other language / OOP design
+  - `object` (but can have "any" definition)
   - `interface`
   - `class`
   - `enum`
   - `array`
-  
-- TypeScript
   - `keyof`
   - `type`
+  - ...
 
 [Link of the basic Type](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+
+#### Primary
 
 So, here is a few example to use them in the code
 
@@ -134,14 +130,10 @@ So, here is a few example to use them in the code
 // Declare variable
 const a: number = 42;
 let b: string;
+const isValid = true;
 
-// function
-function something(a: number, b: string): object {
-  return {
-    a,
-    b
-  };
-}
+// function declaration
+function add(a: number: b: number): number;
 
 // Array
 
@@ -152,9 +144,7 @@ items.push(1);
 items.push("2");
 items.push({});
 
-//--
-
-// Good - To enforce array
+// Good - To enforce type in the array element
 const items: number[] = [];
 
 items.push(1);
@@ -165,69 +155,76 @@ items.push("3");
 
 Enforcing array is really nice as you can know in advance which items it hold. It fits really well with array of `interface` definition for example as your IDE will help you with.
 
-#### Training time
+##### Workshop
 
-Let's first try to declare new variables type in different way and see how your IDE perform (if you have one)
+Let's see how perform your IDE:
+- Use a javascript file
+- Implement the `addNumber` above without type
+- Create a few different variable without type but holding the data associated `a: number`, `b: number`, `c: boolean`, `d: object`
 
-> Declare for example those variables and function to start
-
-```js
-function addNumber(a, b) {
-  return a + b;
-}
-
-const a = 42;
-const b = 8;
-```
-
-If you call the function with the following variable, everything will work. Right?
-
-Ok now let's imagine in our production code we have this kind of method doing logic and we call it with the wrong args, let's say:
-
-```js
-const c = { ok: 1 };
-const d = "ok";
-```
-
-And call the same function above, will it work? And will the result be good?
+Try to call `addNumber` with different variables and ask yourself, will it work? And will the result be good?
 
 > So..
 
-Now let's enforce the code with type from the last part, say we want to returns a string and try to compile.
+Now rename your javascript file to a typescript one and see how things works, what is your IDE behaving.
 
 > So..
 
 Yeah the code won't compile anymore until the code is right and respect the type.
 
-> Reminder, when you create variables, it uses `explicit` type, most of the time you don't
-> need to explicitly tell which type to use.
-> For `function`, it's better to explicitly tell which one we want as it can changes in time and let you avoid further error.
+
+#### Enum
+
+Enum is really nice to organise a collection of related elements and reuse them as truth of reference.
+
+[https://www.typescriptlang.org/docs/handbook/enums.html](https://www.typescriptlang.org/docs/handbook/enums.html)
 
 ```ts
-// Good
-const a = 42;
-
-// Bad
-const a: number = 42;
-
-// Good here if you need to create a default object for example
-const obj: MyDefinition = { ... };
-
-function getUser('123'): UserSchema {
-  return { ... }
+enum COLORS {
+  BLUE = 'blue',
+  RED = 'red',
+  // ... 
 }
 
-// Bad, to much enforcing
-const user: UserSchema = getUser('123');
+// assign
+const color = COLORS.RED;
 
-// Good
-const user = getUser('123');
+// Use them to enforce arguments
+function useColor(color: COLORS): void;
 
+// Or conditional
+
+let newColor: COLORS; // Set at a time
+switch(newColor) {
+  case COLORS.BLUE:
+    // ...
+    break;
+  case COLORS.RED:
+    // ...
+    break;
+  default:
+}
+
+/// Could also with default behavior and incremented number
+
+enum STYLE {
+  SPAN, // == 0
+  BOLDER, // == 1
+  // ... 
+}
 ```
 
-### Interface / Type
+##### Workshop
+
+- Create a DIRECTION enum with UP, DOWN, LEFT, RIGHT
+- Create a function taking this enum as argument and return true if direction is LEFT and RIGHT, and false otherwise
+- Try to call this function with your own variable and directly with a value
+
+### Interface and Type
 
 There is differences between `type` and `interface` I must go through now.
+
+#### Interface
 
 Both can have the same behavior with minor differences or error compile time if you abuse the Type Union when trying to implementing it or extending from a class
 
@@ -269,12 +266,21 @@ interface Contract {
 }
 ```
 
+##### Workshop
+
+- Create a User shape containing basics fields as `firstname` `lastname` and `age`
+- Then create a function taking this user as parameter and returning its fullname
+- Finally, create a real user object and send it to this function
+
+#### Type
+
 On the other side, `type` allows you to create custom type making the code more explicit to read.
 
 ```ts
-// Simple usage
+// Create a type
 type Amount: number;
 
+// And use it
 function displayAmount(amount: Amount) {
   // ...
 }
@@ -372,6 +378,32 @@ type ServiceName = keyof ServiceDefinition;
 Tips3: `cast` to the rescue, we will see it together :)
 
 > Correction and question !?
+
+### Explicit Type
+
+When you create variables, it uses `explicit` type but you don't need to add it yourself every time
+
+```ts
+// Good
+const a = 42;
+
+// Bad
+const a: number = 42;
+
+// Good here if you need to create a default object for example
+const obj: MyDefinition = { ... };
+
+function getUser('123'): UserSchema {
+  return { ... }
+}
+
+// Bad, to much enforcing
+const user: UserSchema = getUser('123');
+
+// Good
+const user = getUser('123');
+
+```
 
 ### Generics
 
