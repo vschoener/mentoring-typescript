@@ -97,10 +97,6 @@ Then compile the code and check your compiled file
 
 ## Types and advantages
 
-### Basics
-
-No we have seen the basics of the compilation, let's dive into the advantage of the language itself.
-
 ### Types
 
 There is a lot different type used to enforce your code
@@ -360,7 +356,32 @@ let tuple = [42, true];
 tuple = [42, true, "hello"];
 ```
 
-#### Training time - Interface as definition workshop
+
+### Advance Types
+
+### keyof
+
+Is a special key that allows to extract key of an enum, interface and more... ;)
+
+```ts
+
+interface Coordinate {
+  x: number;
+  y: number;
+  z: number;
+}
+
+type SHAPE_DIRECTION = keyof Coordinate;
+
+function getCoordinateOn(direction: SHAPE_DIRECTION): number;
+
+```
+
+#### Workshop
+
+- Use the code above and try to call `getCoordinateOn` with different values
+
+### Training time - Interface as definition workshop
 
 So let's reuse our `ServiceContainerInterface` and create a class implementing this one.
 It will return the `ServiceDefinition` as the contract says.
